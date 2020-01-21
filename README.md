@@ -1,12 +1,12 @@
-#Instituto Federal da Paraiba - João Pessoa.
+# Instituto Federal da Paraiba - João Pessoa
 ## Sistemas para Internet - Banco de Dados.
-##Projeto: Biblioteca.
+## Projeto: Biblioteca
 
-###Grupo:
+### Grupo:
 - Francisco de Assis Ferreira de Oliveira Junior - 20191370024
 - Lucas de Sousa Moreira Gusmão - 20191370007
 
-###introdução:
+### introdução:
 
 Sistema bibliotecário em que o usuário é cadastrado com seus dados pessoais (nome, cpf, sexo, telefone e endereço) e assim pode ter acesso a algumas possibilidades. Na biblioteca há uma sala de estudos com acesso virtual em computadores que são disponíveis aos usuarios cadastrados, constando o tempo de uso.
 Também é possível alugar alguns conteúdos do acervo da biblioteca atrávez de um funcionário, que pode ser o destaque do mês ou não.
