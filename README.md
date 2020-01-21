@@ -1,6 +1,6 @@
-#Instituto Federal da Paraiba - João Pessoa
+#Instituto Federal da Paraiba - João Pessoa.
 ## Sistemas para Internet - Banco de Dados.
-##Projeto: Biblioteca
+##Projeto: Biblioteca.
 
 ###Grupo:
 - Francisco de Assis Ferreira de Oliveira Junior - 20191370024
