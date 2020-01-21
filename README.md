@@ -47,7 +47,7 @@ cidade|varchar(45)|não|cidade do usuario||||
 #### Constraints Usuario:
 
 Coluna | Tipo | Expressão
--|-|-|-|-
+--------|------|-----------
 idusuario| PK | PRIMARY KEY (idfunc)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
