@@ -1,0 +1,46 @@
+create table Usuario(
+idusuario smallint	NOT NULL,
+nome varchar(45) NOT NULL,
+cpf varchar(12) NOT NULL,
+sexo varchar(1) NOT NULL,
+email varchar(45) NULL,
+rua varchar(45) NOT NULL,
+bairro varchar(45) NOT NULL,
+cidade varchar(45) NOT NULL
+CONSTRAINT PK_usuario PRIMARY KEY (idusuario),
+CONSTRAINT AK_usuario_nome UNIQUE (nome), 
+CONSTRAINT CK_usuario_sexo CHECK ( sexo IN ('M','F' )), 
+CONSTRAINT AK_usuario_cpf UNIQUE (cpf)
+)
+
+create table Computador(
+idcomputador smallint NOT NULL,
+cod_pc int NOT NULL,
+CONSTRAINT PK_computador PRIMARY KEY (idcomputador),
+CONSTRAINT AK_cod_pc UNIQUE(idcomputador)
+)
+
+create table Usa(
+idusuario smallint NOT NULL,
+idcomputador smallint NOT NULL,
+hora_ent time NOT NULL,
+hora_ent time NOT NULL,
+
+CONSTRAINT FK_usa_usuario FOREIGN KEY (idusuario) REFERENCES usuario,
+CONSTRAINT FK_usa_computador FOREIGN KEY (idcomputador), 
+)
+
+create table Funcionario(
+idfuncionario smallint	NOT NULL,
+nome varchar(45) NOT NULL,
+cpf varchar(12) NOT NULL,
+sexo varchar(1) NOT NULL,
+email varchar(45) NULL,
+rua varchar(45) NOT NULL,
+bairro varchar(45) NOT NULL,
+cidade varchar(45) NOT NULL                                 ///////////FALTANDO AUTORELACIONAMENTO
+CONSTRAINT PK_funcionario PRIMARY KEY (idfuncionario),
+CONSTRAINT AK_funcionarioo_nome UNIQUE (nome), 
+CONSTRAINT CK_funcionario_sexo CHECK ( sexo IN ('M','F' )) ,
+CONSTRAINT AK_funcionario_cpf UNIQUE (cpf),
+)
