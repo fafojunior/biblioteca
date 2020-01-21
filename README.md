@@ -51,3 +51,20 @@ Coluna | Tipo | Expressão
 idusuario| PK | PRIMARY KEY (idfunc)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
+
+####Usa:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idusuario | smallint| não | codigo usuário | |X|X| 
+idcomputador | smallint| não | codigo computador ||X|X| 
+hora_ent | time | não | hora de entrada do usuario no computador | | | | 
+hora_sai | time | não | hora de saída do usuario no computador | | | | 
+
+#### Constraints Usa:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idusuario| PK FK| PRIMARY KEY (idusuario)
+idcomputador| PK FK| PRIMARY KEY (idcomputador)
+
