@@ -91,9 +91,27 @@ idfuncionario | smallint| sim | codigo funcionario | |X|X|
 numero | int | sim |numero de telefone| ||| 
 ddd | int | sim |ddd de telefone| ||| 
 
-#### Constraints Computador:
+#### Constraints Fone:
 
 Coluna | Tipo | Expressão
 --------|------|-----------
 idusuario| PK FK | PRIMARY KEY (idusuario)
 idfuncionario| PK FK| PRIMARY KEY (idfuncionario)
+
+#### Aluga:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idusuario | smallint| não | codigo usuário | |X|X| 
+iditem | smallint| não | codigo item | |X|X| 
+idfuncionario | smallint| não | codigo funcionario | |X|X| 
+data_entrega | date| não | data que alugou ||||
+data_devolucao | date| não | data que deve devolver ||||
+
+#### Constraints Aluga:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idusuario| PK FK | PRIMARY KEY (idusuario)
+idfuncionario| PK FK| PRIMARY KEY (idfuncionario)
+iditem| PK FK| PRIMARY KEY (iditem)
