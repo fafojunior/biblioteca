@@ -19,3 +19,7 @@ No acervo há duas opções para se alugar: Livros e Discos, cada qual com seu t
 Os funcionários também são cadastrados com seus dados pessoais e além disso, também possuem seu próprio codigo. Em seu cadastro pede-se seus dependentes para que possam participar de algum plano disponibilizado pela empresa.
 
 Além de alugar, caso uma peça do acervo esteja indisponível no estoque, o usuário tem também a opção de fazer a reserva para quando o item retornar ficar separado para o próprio.
+
+### Esquema Conceitual:
+
+![](https://github.com/fafojunior/biblioteca/blob/master/Modelo%20Conceitual/er.png)
