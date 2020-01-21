@@ -48,7 +48,7 @@ cidade|varchar(45)|não|cidade do usuario||||
 
 Coluna | Tipo | Expressão
 --------|------|-----------
-idusuario| PK | PRIMARY KEY (idfunc)
+idusuario| PK | PRIMARY KEY (idusuario)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
 
@@ -68,3 +68,32 @@ Coluna | Tipo | Expressão
 idusuario| PK FK| PRIMARY KEY (idusuario)
 idcomputador| PK FK| PRIMARY KEY (idcomputador)
 
+#### Computador:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idcomputador | smallint| não | codigo computador | |X|| 
+cod_pc | int| não | codigo tipo de computador | |X||X 
+
+#### Constraints Computador:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idcomputador| PK | PRIMARY KEY (idcomputador)
+cod_pc| AK | UNIQUE (idcomputador)
+
+#### Fone:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idusuario | smallint| sim | codigo usuário | |X|X| 
+idfuncionario | smallint| sim | codigo funcionario | |X|X| 
+numero | int | sim |numero de telefone| ||| 
+ddd | int | sim |ddd de telefone| ||| 
+
+#### Constraints Computador:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idusuario| PK FK | PRIMARY KEY (idusuario)
+idfuncionario| PK FK| PRIMARY KEY (idfuncionario)
