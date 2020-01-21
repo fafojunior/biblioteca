@@ -31,7 +31,7 @@ Além de alugar, caso uma peça do acervo esteja indisponível no estoque, o usu
 ![](https://github.com/fafojunior/biblioteca/tree/master/Modelo%20L%C3%B3gico/logico.png)
 
 ### Dicionário de Dados:
-####Usuario:
+#### Usuario:
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
@@ -52,7 +52,7 @@ idusuario| PK | PRIMARY KEY (idusuario)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
 
-####Usa:
+#### Usa:
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
@@ -115,3 +115,28 @@ Coluna | Tipo | Expressão
 idusuario| PK FK | PRIMARY KEY (idusuario)
 idfuncionario| PK FK| PRIMARY KEY (idfuncionario)
 iditem| PK FK| PRIMARY KEY (iditem)
+
+#### Funcionario:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idfuncionario | smallint| não | codigo funcionario |     | X | | 
+nome | varchar(45) | não | nome do funcionario | | | |
+cpf | varchar(12) | não | cpf do funcionario | | || X 
+sexo|varchar(1)|não|sexo do funcionario|F-feminino M-masculino|||
+email|varchar(45)|sim|email do funcionario||||
+rua|varchar(45)|não|rua do funcionario||||
+bairro|varchar(45)|não|bairro do funcionario||||
+cidade|varchar(45)|não|cidade do funcionario||||
+idfuncionario | smallint| não | codigo FK funcionario |     |  | X | 
+datad_in | date| não | data de entrada do funcionario como destaque |     |  |  | 
+datad_fin | date| não | data de entrada do funcionario como destaque |     |  |  |
+
+#### Constraints Funcionario:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idfuncionario| PK | PRIMARY KEY (idfuncionario)
+sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
+cpf|AK|UNIQUE (cpf)
+idfuncionario| FK | FOREIGN KEY (idfuncionario)
