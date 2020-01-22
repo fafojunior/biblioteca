@@ -44,3 +44,71 @@ CONSTRAINT AK_funcionarioo_nome UNIQUE (nome),
 CONSTRAINT CK_funcionario_sexo CHECK ( sexo IN ('M','F' )) ,
 CONSTRAINT AK_funcionario_cpf UNIQUE (cpf),
 )
+
+ALTER TABLE funcionario ADD iddestaque smallint NOT NULL
+ALTER TABLE funcionario ADDCONSTRAINT FK_destaque FOREIGN KEY (iddestaque) REFERENCES funcionario
+
+ALTER TABLE funcionario ADD datad_in DATE NOT NULL
+//////////ALTER TABLE funcionario ADD CONSTRAINT FK_datad_in FOREIGN KEY (datad_in) REFERENCES funcionario
+ALTER TABLE funcionario ADD datad_fin DATE NOT NULL
+
+create table Item(
+iditem smallint	NOT NULL,
+quantidade int NOT NULL,
+CONSTRAINT PK_Item PRIMARY KEY (iditem)
+)
+
+create table Aluga(
+idusuario smallint	NOT NULL,
+iditem smallint NOT NULL,
+idfuncionario smallint	NOT NULL,
+data_entrega date NOT NULL,
+data_devolucao date NOT NULL,
+CONSTRAINT FK_funcionario FOREIGN KEY (idfuncionario) REFERENCEs funcionario,
+CONSTRAINT PK_FK_Item FOREIGN KEY (iditem) REFERENCES item,
+CONSTRAINT FK_usuario FOREIGN KEY (idusuario) REFERENCES usuario)
+
+
+create table Acervo(
+idacervo smallint NOT NULL,
+codigo varchar(20) NOT NULL,
+titulo varchar(45) NOT NULL,
+CONSTRAINT PK_acervo PRIMARY KEY (idacervo),
+CONSTRAINT AK_codigo UNIQUE (codigo)
+)
+
+create table Livro(
+idacervo smallint NOT NULL,
+editora varchar(45) NOT NULL,
+autor varchar(45) NOT NULL,
+CONSTRAINT FK_acervo FOREIGN KEY (idacervo) REFERENCES acervo)
+
+create table Disco(
+idacervo smallint NOT NULL,
+artista varchar(45) NOT NULL,
+estilo varchar(45) NULL,
+CONSTRAINT FK_acervo_disco FOREIGN KEY (idacervo) REFERENCES acervo)
+
+create table Reserva(
+idacervo smallint NOT NULL,
+idusuario smallint NOT NULL,
+data_res date NOT NULL,
+CONSTRAINT FK_usuario_reserva FOREIGN KEY (idusuario) REFERENCES usuario,
+CONSTRAINT FK_acervo_reserva FOREIGN KEY (idacervo) REFERENCES acervo
+)
+
+ create table contem(
+ iditem smallint	NOT NULL,
+ idacervo smallint NOT NULL,
+ idsessao smallint NOT NULL,
+ CONSTRAINT FK_Item_contem FOREIGN KEY (iditem) REFERENCES item,
+ CONSTRAINT FK_acervo_contem FOREIGN KEY (idacervo) REFERENCES acervo,
+ CONSTRAINT FK_sessao_contem FOREIGN KEY (idsessao) REFERENCES sessao
+ )
+
+create table sessao(
+idsessao smallint NOT NULL,
+nome varchar(45) NOT NULL,
+codigo varchar(45) NOT NULL,
+CONSTRAINT PK_codigo PRIMARY KEY (idsessao)
+)
