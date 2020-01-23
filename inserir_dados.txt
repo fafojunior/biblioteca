@@ -11,7 +11,7 @@ INSERT INTO usuarios(idusuario, nome, cpf, sexo, email, rua, bairro, cidade, cas
 VALUES (4, 'Josileide dos Campos', '985304423423', 'F', 'joosi1230@hotmail.com', 'Avenida Rio Branco', 'Centro', 'Rio de Janeiro', 'RJ', 'N')
 
 INSERT INTO usuarios
-VALUES(5, 'Marcia Windas', '541482238712', 'F', 'mwindas0@hotmail.com', 'Avenida Esbertalina Barbosa Damiani', 'Guriri Norte', 'São Mateus', 'ES', 3, 'S', 'Luiz Antonio')
+VALUES(5, 'Marcia Windas', '541482238712', 'F', 'mwindas0@hotmail.com', 'Avenida Esbertalina Barbosa Damiani', 'Guriri Norte', 'SÃ£o Mateus', 'ES', 3, 'S', 'Luiz Antonio')
 
 
 
@@ -72,7 +72,7 @@ INSERT INTO livro
 value(4, 'Bloomsbury', 'Neil Gaiman')
 
 INSERT INTO livro
-value(5, 'Júlio Verne', 'Pierre-Jules Hetzel')
+value(5, 'JÃºlio Verne', 'Pierre-Jules Hetzel')
 
 
 
@@ -82,3 +82,47 @@ value(2, 'Opeth', 'Metal Progressivo')
 INSERT INTO disco
 value(3, 'James Cameron', 'Romance')
 
+
+INSERT INTO Sessao
+value(1, 'Romance', '331')
+
+INSERT INTO Sessao
+value(2, 'Drama', '332')
+
+INSERT INTO Sessao
+value(3, 'Terror', '333')
+
+
+
+INSERT INTO item
+value(1, 1)
+
+INSERT INTO item
+value(2, 4)
+
+INSERT INTO item
+value(3, 2)
+
+
+
+INSERT INTO contem
+value(1, 2, 2)
+
+INSERT INTO contem
+value(2, 1, 1)
+
+INSERT INTO contem
+value(2, 2, 2)
+
+INSERT INTO contem
+value(2, 3, 1)
+
+INSERT INTO contem
+value(2, 3, 2)
+
+
+INSERT INTO contem
+value(3, 2, 1)
+
+INSERT INTO contem
+value(3, 3, 1)
