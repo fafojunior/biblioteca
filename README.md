@@ -56,8 +56,8 @@ cpf|AK|UNIQUE (cpf)
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
-idusuario | smallint| não | codigo usuário | |X|X| 
-idcomputador | smallint| não | codigo computador ||X|X| 
+idusuario | smallint| não | codigo usuário | ||X| 
+idcomputador | smallint| não | codigo computador |||X| 
 hora_ent | time | não | hora de entrada do usuario no computador | | | | 
 hora_sai | time | não | hora de saída do usuario no computador | | | | 
 
@@ -65,15 +65,15 @@ hora_sai | time | não | hora de saída do usuario no computador | | | |
 
 Coluna | Tipo | Expressão
 --------|------|-----------
-idusuario| PK FK| PRIMARY KEY (idusuario)
-idcomputador| PK FK| PRIMARY KEY (idcomputador)
+idusuario| FK| FOREIGN KEY (idusuario) REFERENCES usuario
+idcomputador| FK| FOREIGN KEY (idcomputador) REFERENCES computador
 
 #### Computador:
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
 idcomputador | smallint| não | codigo computador | |X|| 
-cod_pc | int| não | codigo tipo de computador | |X||X 
+cod_pc | int| não | codigo tipo de computador | |||X 
 
 #### Constraints Computador:
 
@@ -86,8 +86,8 @@ cod_pc| AK | UNIQUE (idcomputador)
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
-idusuario | smallint| sim | codigo usuário | |X|X| 
-idfuncionario | smallint| sim | codigo funcionario | |X|X| 
+idusuario | smallint| sim | codigo usuário | ||X| 
+idfuncionario | smallint| sim | codigo funcionario | ||X| 
 numero | int | sim |numero de telefone| ||| 
 ddd | int | sim |ddd de telefone| ||| 
 
@@ -95,16 +95,16 @@ ddd | int | sim |ddd de telefone| |||
 
 Coluna | Tipo | Expressão
 --------|------|-----------
-idusuario| PK FK | PRIMARY KEY (idusuario)
-idfuncionario| PK FK| PRIMARY KEY (idfuncionario)
+idusuario| FK | FOREIGN KEY (idusuario) REFERENCES usuario
+idfuncionario| FK| FOREIGN KEY (idfuncionario) REFERENCES funcionario
 
 #### Aluga:
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
-idusuario | smallint| não | codigo usuário | |X|X| 
-iditem | smallint| não | codigo item | |X|X| 
-idfuncionario | smallint| não | codigo funcionario | |X|X| 
+idusuario | smallint| não | codigo usuário | ||X| 
+iditem | smallint| não | codigo item | ||X| 
+idfuncionario | smallint| não | codigo funcionario | ||X| 
 data_entrega | date| não | data que alugou ||||
 data_devolucao | date| não | data que deve devolver ||||
 
@@ -112,9 +112,9 @@ data_devolucao | date| não | data que deve devolver ||||
 
 Coluna | Tipo | Expressão
 --------|------|-----------
-idusuario| PK FK | PRIMARY KEY (idusuario)
-idfuncionario| PK FK| PRIMARY KEY (idfuncionario)
-iditem| PK FK| PRIMARY KEY (iditem)
+idusuario| FK | FOREIGN KEY (idusuario) REFERENCES usuario
+idfuncionario| FK| FOREIGN KEY (idfuncionario) REFERENCES funcionario
+iditem| FK| FOREIGN KEY (iditem) REFERENCES item
 
 #### Funcionario:
 
@@ -128,9 +128,6 @@ email|varchar(45)|sim|email do funcionario||||
 rua|varchar(45)|não|rua do funcionario||||
 bairro|varchar(45)|não|bairro do funcionario||||
 cidade|varchar(45)|não|cidade do funcionario||||
-iddestaque | smallint| não | codigo FK funcionario |     |  | X | 
-datad_in | date| não | data de entrada do funcionario como destaque |     |  |  | 
-datad_fin | date| não | data de entrada do funcionario como destaque |     |  |  |
 
 #### Constraints Funcionario:
 
@@ -139,7 +136,6 @@ Coluna | Tipo | Expressão
 idfuncionario| PK | PRIMARY KEY (idfuncionario)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
-iddestaque| FK | FOREIGN KEY (idfuncionario)
 
 #### Dependentes:
 
@@ -175,17 +171,17 @@ iditem| PK | PRIMARY KEY (iditem)
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
-iditem | smallint| não | codigo item |     | X | X| 
-idacervo | smallint| não | codigo acervo |     | X |X | 
-idsessão | smallint| não | codigo acervo |     | X |X| 
+iditem | smallint| não | codigo item |     |  | X| 
+idacervo | smallint| não | codigo acervo |     |  |X | 
+idsessão | smallint| não | codigo acervo |     |  |X| 
 
 #### Constraints Contem:
 
 Coluna | Tipo | Expressão
 --------|------|-----------
-iditem| PK | PRIMARY KEY (iditem)
-idacervo| PK| PRIMARY KEY (idacervo)
-idsessao| PK | PRIMARY KEY (idsessao)
+iditem| FK | FOREIGN KEY (iditem) REFERENCES item
+idacervo| FK| FOREIGN KEY (idacervo) REFERENCES acervo
+idsessao| FK | FOREIGN KEY (idsessao) REFERENCES sessao
 
 #### Sessão:
 
@@ -193,13 +189,14 @@ Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
 idsessao| smallint| não | codigo sessao |     | X | | 
 genero| varchar(45)| não | genero sessao |  |  | | 
-codigo| varchar(45)| não | codigo sessao |  |  | | 
+codigo| varchar(45)| não | codigo sessao |  |  | | X
 
 #### Constraints Sessao:
 
 Coluna | Tipo | Expressão
 --------|------|-----------
 idsessao| PK | PRIMARY KEY (idsessao)
+codigo| AK | UNIQUE (codigo)
 
 #### Acervo:
 
