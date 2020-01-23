@@ -15,7 +15,7 @@ CONSTRAINT AK_usuario_nome UNIQUE (nome),
 CONSTRAINT CK_usuario_sexo CHECK ( sexo IN ('M','F' )), 
 CONSTRAINT AK_usuario_cpf UNIQUE (cpf),
 CONSTRAINT FK_matrimonio FOREIGN KEY (Usuario),
-CONSTRAINT CK_usuario_casado CHECK ( casado IN ('Sim','Não' ))
+CONSTRAINT CK_usuario_casado CHECK ( casado IN ('S','N'))
 )
 
 create table Computador(
@@ -43,19 +43,12 @@ sexo varchar(1) NOT NULL,
 email varchar(45) NULL,
 rua varchar(45) NOT NULL,
 bairro varchar(45) NOT NULL,
-cidade varchar(45) NOT NULL                                 ///////////FALTANDO AUTORELACIONAMENTO
+cidade varchar(45) NOT NULL                                 
 CONSTRAINT PK_funcionario PRIMARY KEY (idfuncionario),
 CONSTRAINT AK_funcionarioo_nome UNIQUE (nome), 
 CONSTRAINT CK_funcionario_sexo CHECK ( sexo IN ('M','F' )) ,
 CONSTRAINT AK_funcionario_cpf UNIQUE (cpf),
 )
-
-ALTER TABLE funcionario ADD iddestaque smallint NOT NULL
-ALTER TABLE funcionario ADDCONSTRAINT FK_destaque FOREIGN KEY (iddestaque) REFERENCES funcionario
-
-ALTER TABLE funcionario ADD datad_in DATE NOT NULL
-//////////ALTER TABLE funcionario ADD CONSTRAINT FK_datad_in FOREIGN KEY (datad_in) REFERENCES funcionario
-ALTER TABLE funcionario ADD datad_fin DATE NOT NULL
 
 create table Item(
 iditem smallint	NOT NULL,
@@ -116,6 +109,7 @@ idsessao smallint NOT NULL,
 nome varchar(45) NOT NULL,
 codigo varchar(45) NOT NULL,
 CONSTRAINT PK_codigo PRIMARY KEY (idsessao)
+CONSTRAINT AK_codigo UNIQUE (codigo)
 )
 
 create table Fone(
