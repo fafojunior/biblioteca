@@ -43,6 +43,9 @@ email|varchar(45)|sim|email do usuario||||
 rua|varchar(45)|não|rua do usuario||||
 bairro|varchar(45)|não|bairro do usuario||||
 cidade|varchar(45)|não|cidade do usuario||||
+idmatrimonio|smallint|sim|codigo matrimonio||||
+casado|varchar(1)|não|usuario casado ou não|S-sim N-não|||
+nome_matrimonio|varchar(45)|sim|nome do cônjuge||||
 
 #### Constraints Usuario:
 
@@ -51,6 +54,8 @@ Coluna | Tipo | Expressão
 idusuario| PK | PRIMARY KEY (idusuario)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
+idmatrimonio|FK| FOREIGN KEY (idmatrimonio) REFERENCES usuario
+casado|Validação do domínio. Caracteres permitidos: S, N| CHECK (casado IN ('S', 'N'))
 
 #### Usa:
 
