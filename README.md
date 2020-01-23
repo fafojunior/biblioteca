@@ -205,7 +205,7 @@ idsessao| PK | PRIMARY KEY (idsessao)
 
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
-idacervo| PK | PRIMARY KEY (idsessao)| smallint| não | codigo acervo |  | X | | 
+idacervo|  smallint| não | codigo acervo |  | X | |
 codigo| varchar(20)| não | codigo do conteúdo acervo |  |  | |X
 titulo| varchar(45)| não | titulo da obra| |  | |
 idreserva|smallint| não | codigo reserva |  |  | X | 
@@ -218,3 +218,45 @@ idacervo| PK | PRIMARY KEY (idacervo)
 idsessao| FK | FOREIGN KEY (idsessao)
 codigo | AK| UNIQUE(codigo)
 
+#### Livro:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idacervo|  smallint| não | codigo acervo |  |  | X |
+editora|varchar(45)|não|editora livro||||
+autor|varchar(45)|não|autor livro||||
+
+#### Constraints Livro:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idacervo| FK | FOREIGN KEY (idacervo) REFERENCES acervo
+
+#### Disco:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idacervo|  smallint| não | codigo acervo |  |  | X |
+artista|varchar(45)| não | artista disco |  |  |  |
+estilo|varchar(45)|não|estilo disco||||
+
+#### Constraints Disco:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idacervo| FK | FOREIGN KEY (idacervo) REFERENCES acervo
+
+#### Reserva:
+
+Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
+-----------|------|-------|------------|-----------|-----|-----|------
+idacervo|  smallint| não | codigo acervo |  |  | X |
+idusuario | smallint| não | codigo usuário | ||X| 
+data_res|date|não|data de recebimento||||
+
+#### Constraints Reserva:
+
+Coluna | Tipo | Expressão
+--------|------|-----------
+idacervo| FK | FOREIGN KEY (idacervo) REFERENCES acervo
+idusuario|FK| FOREIGN KEY (idusuario) REFERENCES usuario
