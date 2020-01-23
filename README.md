@@ -28,7 +28,7 @@ Além de alugar, caso uma peça do acervo esteja indisponível no estoque, o usu
 
 ### Esquema Lógico:
 
-![](https://github.com/fafojunior/biblioteca/tree/master/Modelo%20L%C3%B3gico/logico.png)
+![](https://github.com/fafojunior/biblioteca/blob/master/Modelo%20L%C3%B3gico/logico.png)
 
 ### Dicionário de Dados:
 #### Usuario:
