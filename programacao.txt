@@ -6,11 +6,16 @@ sexo varchar(1) NOT NULL,
 email varchar(45) NULL,
 rua varchar(45) NOT NULL,
 bairro varchar(45) NOT NULL,
-cidade varchar(45) NOT NULL
+cidade varchar(45) NOT NULL,
+idmatrimonio smallint NULL,
+casado varchar(5) NOT NULL,
+nome_matrimonio varchar(45) NULL,
 CONSTRAINT PK_usuario PRIMARY KEY (idusuario),
 CONSTRAINT AK_usuario_nome UNIQUE (nome), 
 CONSTRAINT CK_usuario_sexo CHECK ( sexo IN ('M','F' )), 
-CONSTRAINT AK_usuario_cpf UNIQUE (cpf)
+CONSTRAINT AK_usuario_cpf UNIQUE (cpf),
+CONSTRAINT FK_matrimonio FOREIGN KEY (Usuario),
+CONSTRAINT CK_usuario_casado CHECK ( casado IN ('Sim','Não' ))
 )
 
 create table Computador(
@@ -24,10 +29,10 @@ create table Usa(
 idusuario smallint NOT NULL,
 idcomputador smallint NOT NULL,
 hora_ent time NOT NULL,
-hora_ent time NOT NULL,
+hora_sai time NOT NULL,
 
 CONSTRAINT FK_usa_usuario FOREIGN KEY (idusuario) REFERENCES usuario,
-CONSTRAINT FK_usa_computador FOREIGN KEY (idcomputador), 
+CONSTRAINT FK_usa_computador FOREIGN KEY (idcomputador) REFERENCES computador
 )
 
 create table Funcionario(
@@ -111,4 +116,13 @@ idsessao smallint NOT NULL,
 nome varchar(45) NOT NULL,
 codigo varchar(45) NOT NULL,
 CONSTRAINT PK_codigo PRIMARY KEY (idsessao)
+)
+
+create table Fone(
+idusuario smallint NULL,
+idfuncionario smallint NULL,
+ddd int NULL,
+numero int NULL,
+CONSTRAINT FK_usuario_fone FOREIGN KEY(idusuario) REFERENCES usuario,
+CONSTRAINT FK_funcionario_fone FOREIGN KEY(idfuncionario) REFERENCES funcionario
 )
