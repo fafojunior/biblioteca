@@ -122,3 +122,12 @@ numero int NULL,
 CONSTRAINT FK_usuario_fone FOREIGN KEY(idusuario) REFERENCES usuario,
 CONSTRAINT FK_funcionario_fone FOREIGN KEY(idfuncionario) REFERENCES funcionario
 )
+
+create table Dependente(
+iddependente smallint NOT NULL,
+grau varchar(45) NOT NULL,
+nome varchar(45) NULL,
+idfuncionario smallint NOT NULL,
+CONSTRAINT PK_dependente PRIMARY KEY (iddependente),
+CONSTRAINT FK_funcionario_dependente FOREIGN KEY (idfuncionario)
+)
