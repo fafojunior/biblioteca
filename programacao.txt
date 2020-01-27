@@ -7,7 +7,7 @@ email varchar(45) NULL,
 rua varchar(45) NOT NULL,
 bairro varchar(45) NOT NULL,
 municipio varchar(45) NOT NULL,
-cidade varchar(45) NOT NULL,
+estado varchar(45) NOT NULL,
 idmatrimonio smallint NULL,
 casado varchar(5) NOT NULL,
 nome_matrimonio varchar(45) NULL,
@@ -15,7 +15,7 @@ CONSTRAINT PK_usuario PRIMARY KEY (idusuario),
 CONSTRAINT AK_usuario_nome UNIQUE (nome), 
 CONSTRAINT CK_usuario_sexo CHECK ( sexo IN ('M','F' )), 
 CONSTRAINT AK_usuario_cpf UNIQUE (cpf),
-CONSTRAINT FK_matrimonio FOREIGN KEY (Usuario),
+CONSTRAINT FK_matrimonio FOREIGN KEY (idusuario) REFERENCES Usuario,
 CONSTRAINT CK_usuario_casado CHECK ( casado IN ('S','N'))
 )
 
@@ -45,7 +45,7 @@ email varchar(45) NULL,
 rua varchar(45) NOT NULL,
 bairro varchar(45) NOT NULL,
 municipio varchar(45) NOT NULL,
-cidade varchar(45) NOT NULL,                              
+estado varchar(45) NOT NULL,                              
 CONSTRAINT PK_funcionario PRIMARY KEY (idfuncionario),
 CONSTRAINT AK_funcionarioo_nome UNIQUE (nome), 
 CONSTRAINT CK_funcionario_sexo CHECK ( sexo IN ('M','F' )) ,
@@ -97,6 +97,15 @@ CONSTRAINT FK_usuario_reserva FOREIGN KEY (idusuario) REFERENCES usuario,
 CONSTRAINT FK_acervo_reserva FOREIGN KEY (idacervo) REFERENCES acervo
 )
 
+create table sessao(
+idsessao smallint NOT NULL,
+nome varchar(45) NOT NULL,
+codigo varchar(45) NOT NULL,
+CONSTRAINT PK_codigo PRIMARY KEY (idsessao),
+CONSTRAINT AK_codigo_Sessao UNIQUE (codigo)
+)
+
+
  create table contem(
  iditem smallint	NOT NULL,
  idacervo smallint NOT NULL,
@@ -106,13 +115,6 @@ CONSTRAINT FK_acervo_reserva FOREIGN KEY (idacervo) REFERENCES acervo
  CONSTRAINT FK_sessao_contem FOREIGN KEY (idsessao) REFERENCES sessao
  )
 
-create table sessao(
-idsessao smallint NOT NULL,
-nome varchar(45) NOT NULL,
-codigo varchar(45) NOT NULL,
-CONSTRAINT PK_codigo PRIMARY KEY (idsessao)
-CONSTRAINT AK_codigo UNIQUE (codigo)
-)
 
 create table Fone(
 idusuario smallint NULL,
@@ -129,5 +131,5 @@ grau varchar(45) NOT NULL,
 nome varchar(45) NULL,
 idfuncionario smallint NOT NULL,
 CONSTRAINT PK_dependente PRIMARY KEY (iddependente),
-CONSTRAINT FK_funcionario_dependente FOREIGN KEY (idfuncionario)
+CONSTRAINT FK_funcionario_dependente FOREIGN KEY (idfuncionario) REFERENCES funcionario
 )
