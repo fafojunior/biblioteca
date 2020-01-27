@@ -1,20 +1,20 @@
-INSERT INTO usuarios(idusuario, nome, cpf, sexo, email, rua, bairro, cidade, casado)
+INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, cidade, casado)
 VALUES (1, 'Bron Bedingfield', '930169251152', 'M', 'bbedingfield0@hotmail.com', 'Rua Frederico Moura', 'Cidade Nova', 'Franca', 'SP', 'N')
 
-INSERT INTO usuarios
+INSERT INTO usuario
 VALUES (2, 'Willdon Fawcitt', '872694318278', 'M', 'wfawcitt2@hotmail.com', 'Avenida Afonso Pena', 'Boa Viagem', 'Belo Horizonte','MG', 1, 'S', 'Maria das Dores')
 
-INSERT INTO usuarios
+INSERT INTO usuario
 VALUES (3, 'Kathrine Eustice', '425980983012', 'F', 'keustice9@hotmail.com', 'Rua da Imprensa', 'Monte Castelo', 'Campo Grande', 'MS', 2, 'S', 'Garvy Drinkale')
 
-INSERT INTO usuarios(idusuario, nome, cpf, sexo, email, rua, bairro, cidade, casado)
+INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, cidade, casado)
 VALUES (4, 'Josileide dos Campos', '985304423423', 'F', 'joosi1230@hotmail.com', 'Avenida Rio Branco', 'Centro', 'Rio de Janeiro', 'RJ', 'N')
 
-INSERT INTO usuarios
+INSERT INTO usuario
 VALUES(5, 'Marcia Windas', '541482238712', 'F', 'mwindas0@hotmail.com', 'Avenida Esbertalina Barbosa Damiani', 'Guriri Norte', 'São Mateus', 'ES', 3, 'S', 'Luiz Antonio')
 
 
-
+-----------COMPUTADOR------------
 INSERT INTO computador
 VALUES(1, 111)
 
@@ -31,7 +31,7 @@ INSERT INTO computador
 VALUES(5, 115)
 
 
-
+---------------USA---------------
 INSERT INTO usa
 VALUES(3, 2, '13:50:00', '15:20:00')
 
@@ -48,81 +48,187 @@ INSERT INTO usa
 VALUES(2, 2, '15:20:00', '15:50:00')
 
 
+------------------ACERVO-------------------
+INSERT INTO acervo
+VALUES(1, '221', 'Dom Casmurro')
 
 INSERT INTO acervo
-VALUE(1, '221', 'Dom Casmurro')
+VALUES(2, '222', 'Damnation')
 
 INSERT INTO acervo
-VALUE(2, '222', 'Damnation')
+VALUES(3, '223', 'Titanic')
 
 INSERT INTO acervo
-VALUE(3, '223', 'Titanic')
+VALUES(4, '224', 'Coraline')
 
 INSERT INTO acervo
-VALUE(4, '224', 'Coraline')
-
-INSERT INTO acervo
-VALUE(5, '225', 'Viagem ao centro da Terra')
+VALUES(5, '225', 'Viagem ao centro da Terra')
 
 
 INSERT INTO livro
-value(1, 'Garnier', 'Machado de Assis')
+values(1, 'Garnier', 'Machado de Assis')
 
 INSERT INTO livro
-value(4, 'Bloomsbury', 'Neil Gaiman')
+values(4, 'Bloomsbury', 'Neil Gaiman')
 
 INSERT INTO livro
-value(5, 'Júlio Verne', 'Pierre-Jules Hetzel')
+values(5, 'Júlio Verne', 'Pierre-Jules Hetzel')
 
 
 
 INSERT INTO disco
-value(2, 'Opeth', 'Metal Progressivo')
+values(2, 'Opeth', 'Metal Progressivo')
 
 INSERT INTO disco
-value(3, 'James Cameron', 'Romance')
+values(3, 'James Cameron', 'Romance')
 
+
+------------SESSAO--------------
+INSERT INTO Sessao
+values(1, 'Romance', '331')
 
 INSERT INTO Sessao
-value(1, 'Romance', '331')
+values(2, 'Drama', '332')
 
 INSERT INTO Sessao
-value(2, 'Drama', '332')
-
-INSERT INTO Sessao
-value(3, 'Terror', '333')
+values(3, 'Terror', '333')
 
 
+---------ITEM-----------
+INSERT INTO item
+values(1, 1)
 
 INSERT INTO item
-value(1, 1)
+values(2, 4)
 
 INSERT INTO item
-value(2, 4)
+values(3, 2)
 
 INSERT INTO item
-value(3, 2)
+values(4, 2)
 
+INSERT INTO item
+values(5, 1)
 
+--------------CONTEM------------
+INSERT INTO contem
+values(1, 2, 2)
 
 INSERT INTO contem
-value(1, 2, 2)
+values(2, 1, 1)
 
 INSERT INTO contem
-value(2, 1, 1)
+values(2, 2, 2)
 
 INSERT INTO contem
-value(2, 2, 2)
+values(2, 3, 1)
 
 INSERT INTO contem
-value(2, 3, 1)
+values(2, 3, 2)
 
 INSERT INTO contem
-value(2, 3, 2)
-
-
-INSERT INTO contem
-value(3, 2, 1)
+values(3, 2, 1)
 
 INSERT INTO contem
-value(3, 3, 1)
+values(3, 3, 1)
+
+
+-----------------------------------FUNCIONARIO----------------------------------------
+INSERT INTO funcionario
+VALUES(1, '	Adrienne Troake', '757898192712', 'F', 'atroake0@hotmail.com', 'Rua Humberto da Silva Paiva Martins', 'Ernesto Geisel', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(2, 'Georgie Pridmore', '726397890312', 'M', 'gpridmore8@hotmail.com', 'Rua Genival de Oliveira', 'José Américo de Almeida', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(3, '	Madeline Gaven', '897146933112', 'F', 'mgaven6@hotmail.com', 'Rua Manoel Maria de Figueiredo', 'Pedro Gondim', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(4, 'Arthur Giacomucci', '927009262354', 'M', 'agiacomucci0@hotmail.com', 'Rua Paulino Pinto', 'Cabo Branco', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(5, 'Malia Janson', '422182262754', 'F', 'mjanson9@hotmail.com', 'Rua Flávio de Oliveira Albuquerque', 'Mangabeira', 'João Pessoa', 'PB')
+
+
+
+
+------------------ALUGA--------------------
+INSERT INTO aluga
+VALUES(1, 2, 1, '30/03/2019', '20/04/2019')
+
+INSERT INTO aluga
+VALUES(2, 1, 3, '02/04/2019', '23/04/2019')
+
+INSERT INTO aluga
+VALUES(3, 3, 5, '02/04/2019', '23/04/2019')
+
+INSERT INTO aluga
+VALUES(4, 5, 2, '05/04/2019', '26/04/2019')
+
+INSERT INTO aluga
+VALUES(5, 4, 5, '06/04/2019', '27/04/2019')
+
+
+----------------FONE----------------------
+INSERT INTO fone
+VALUES(1, null, null, null)
+
+INSERT INTO fone
+VALUES(2, null, 83, 993905347)
+
+INSERT INTO fone
+VALUES(3, null, 83, 960338276)
+
+INSERT INTO fone
+VALUES(4, null, 83, 915937094)
+
+INSERT INTO fone
+VALUES(5, null, 83, 936653697)
+
+INSERT INTO fone
+VALUES(null, 1, null, null)
+
+INSERT INTO fone
+VALUES(null, 2, 83, 914255758)
+
+INSERT INTO fone
+VALUES(null, 3, 83, 968886096)
+
+INSERT INTO fone
+VALUES(null, 4, 83, 937421096)
+
+INSERT INTO fone
+VALUES(null, 5, 83, 956018533)
+
+
+-------------DEPENDENTE----------------
+INSERT INTO dependente
+VALUES(1, 'filho', 'Eduardo Lima', 1)
+
+INSERT INTO dependente
+VALUES(2, 'filho', 'José Lima', 1)
+
+INSERT INTO dependente
+VALUES(3, 'filha', 'Maria Lins', 3)
+
+INSERT INTO dependente
+VALUES(4, 'filha', 'Luiza Mel', 2)
+
+INSERT INTO dependente
+VALUES(5, 'filho', 'Arlindo Cruz', 2)
+
+-----------------RESERVA------------------
+INSERT INTO reserva
+VALUES(2, 1, '30/01/2020')
+
+INSERT INTO reserva
+VALUES(1, 1, '30/01/2020')
+
+INSERT INTO reserva
+VALUES(2, 2, '25/03/2020')
+
+INSERT INTO reserva
+VALUES(4, 3, '22/02/2020')
+
+INSERT INTO reserva
+VALUES(3, 5, '05/02/2020')
