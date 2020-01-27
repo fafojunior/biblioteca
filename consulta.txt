@@ -1,0 +1,9 @@
+------------UPDATES------------
+UPDATE funcionario
+SET email='adritroak@hotmail.com'
+WHERE idfuncionario = 1
+
+UPDATE reserva
+SET data_res = '29/01/2020'
+WHERE idacervo = 2
+
