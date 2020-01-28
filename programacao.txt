@@ -119,7 +119,7 @@ CONSTRAINT AK_codigo_Sessao UNIQUE (codigo)
 create table Fone(
 idusuario smallint NULL,
 idfuncionario smallint NULL,
-ddd int NULL,
+ddd int DEFAULT 83,
 numero int NULL,
 CONSTRAINT FK_usuario_fone FOREIGN KEY(idusuario) REFERENCES usuario,
 CONSTRAINT FK_funcionario_fone FOREIGN KEY(idfuncionario) REFERENCES funcionario

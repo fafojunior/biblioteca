@@ -7,3 +7,49 @@ UPDATE reserva
 SET data_res = '29/01/2020'
 WHERE idacervo = 2
 
+------------DELETE--------------
+DELETE FROM reserva
+WHERE idacervo = 3
+
+DELETE FROM dependente
+WHERE idfuncionario = 3
+
+
+-------------Consultas-------------------
+Consultar o nome do usuario, o funcionario que o atendeu, a quantidade de itens que alugou, o nome da sessao e titulo da obra.
+
+SELECT us.nome as [usuario], fu.nome as [funcionario], it.quantidade as [quantidade], se.nome as [sessao], ac.titulo as [obra]
+FROM usuario as [us] JOIN aluga as [al]
+ON us.idusuario = al.idusuario
+JOIN funcionario as [fu]
+ON al.idfuncionario = fu.idfuncionario
+JOIN item as [it]
+ON al.iditem = it.iditem
+JOIN contem as [con]
+ON it.iditem = con.iditem
+JOIN sessao as [se]
+ON se.idsessao = con.idsessao
+JOIN acervo as [ac]
+ON ac.idacervo = con.idacervo
+ORDER BY us.nome
+
+
+
+Quantidade de reservas feitas por usuario.
+
+SELECT us.nome as [usuario], COUNT(ac.titulo) as [quantidade]
+FROM usuario as [us] JOIN reserva as [re]
+ON us.idusuario = re.idusuario
+JOIN Acervo as [ac]
+ON ac.idacervo = re.idacervo
+GROUP BY us.nome
+
+
+
+Exibir os usuarios, os computadores que utilizaram para estudo e o horario em que foram utilizados
+
+SELECT us.nome as [usuario], usa.hora_ent as [entrada], usa.hora_sai as [saida], com.cod_pc as [computador]
+FROM usuario as [us] JOIN usa
+ON us.idusuario = usa.idusuario
+JOIN Computador as [com]
+ON com.idcomputador = usa.idcomputador
