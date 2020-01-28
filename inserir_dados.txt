@@ -1,4 +1,4 @@
-INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, cidade, casado)
+INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, estado, casado)
 VALUES (1, 'Bron Bedingfield', '930169251152', 'M', 'bbedingfield0@hotmail.com', 'Rua Frederico Moura', 'Cidade Nova', 'Franca', 'SP', 'N')
 
 INSERT INTO usuario
@@ -7,7 +7,7 @@ VALUES (2, 'Willdon Fawcitt', '872694318278', 'M', 'wfawcitt2@hotmail.com', 'Ave
 INSERT INTO usuario
 VALUES (3, 'Kathrine Eustice', '425980983012', 'F', 'keustice9@hotmail.com', 'Rua da Imprensa', 'Monte Castelo', 'Campo Grande', 'MS', 2, 'S', 'Garvy Drinkale')
 
-INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, cidade, casado)
+INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, estado, casado)
 VALUES (4, 'Josileide dos Campos', '985304423423', 'F', 'joosi1230@hotmail.com', 'Avenida Rio Branco', 'Centro', 'Rio de Janeiro', 'RJ', 'N')
 
 INSERT INTO usuario
