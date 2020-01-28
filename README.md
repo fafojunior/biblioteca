@@ -8,18 +8,17 @@
 
 ### introdução:
 
-Sistema bibliotecário em que o usuário é cadastrado com seus dados pessoais (nome, CPF, sexo, email, telefone, endereço e sobre seu matrimonio) e assim pode ter acesso a algumas possibilidades. Na biblioteca há uma sala de estudos com acesso virtual em computadores que são disponíveis aos usuários cadastrados, constando o tempo de uso.
+Sistema bibliotecário em que o usuário é cadastrado com seus dados pessoais (nome, CPF, sexo, e-mail, telefone, endereço, estado civil) podendo assim ter acesso aos serviços da biblioteca. Na biblioteca há uma sala de estudos com acesso virtual em computadores que são disponibilizados aos usuários cadastrados.
 
-Também é possível alugar alguns conteúdos do acervo da biblioteca atráves
- de um funcionário.
+Também sendo possível alugar itens do acervo da biblioteca por mediação de um dos funcionários.
 
-Os itens alugados estão contidos em sessões especificas separadas por nome e numerações, e seu aluguel tem o prazo de devolução.
+Os itens alugados ficam em sessões especificas separadas por nome e numeração, juntamente com o prazo de devolução.
 
-No acervo há duas opções para se alugar: livros e Discos, cada qual com seu título e artista, sendo ambos contendo seu código individual.
+No acervo há duas opções para se alugar: livros e Discos, cada um com seu título e artista, ambos contendo seus códigos individuais.
 
-Os funcionários também são cadastrados com seus dados pessoais. Em seu cadastro pedem-se seus dependentes para que possam participar de algum plano disponibilizado pela empresa.
+Os funcionários também são cadastrados no sistema, juntamente de seus dependentes para que os familiares do funcionário também possam participar de algum dos planos disponibilizados pela empresa.
 
-Além de alugar, caso uma peça do acervo esteja indisponível no estoque, o usuário tem também a opção de fazer a reserva para quando o item retornar ficar separado para o próprio.
+Caso um item do acervo esteja indisponível no estoque, o usuário tem também a opção de fazer a reserva para quando o item retornar ficar separado para o próprio.
 
 
 ### Esquema Conceitual:
