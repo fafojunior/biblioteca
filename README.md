@@ -41,7 +41,8 @@ sexo|varchar(1)|não|sexo do usuario|F-feminino M-masculino|||
 email|varchar(45)|sim|email do usuario||||
 rua|varchar(45)|não|rua do usuario||||
 bairro|varchar(45)|não|bairro do usuario||||
-cidade|varchar(45)|não|cidade do usuario||||
+municipio|varchar(45)|não|municipio do usuario||||
+estado|varchar(45)|não|estado do usuario||||
 idmatrimonio|smallint|sim|codigo matrimonio||||
 casado|varchar(1)|não|usuario casado ou não|S-sim N-não|||
 nome_matrimonio|varchar(45)|sim|nome do cônjuge||||
@@ -54,6 +55,7 @@ idusuario| PK | PRIMARY KEY (idusuario)
 sexo|Validação do domínio. Caracteres permitidos: F, M| CHECK ( sexo IN (‘M’,’F’ ))
 cpf|AK|UNIQUE (cpf)
 idmatrimonio|FK| FOREIGN KEY (idmatrimonio) REFERENCES usuario
+idmatrimonio|AK| UNIQUE (idmatrimonio)
 casado|Validação do domínio. Caracteres permitidos: S, N| CHECK (casado IN ('S', 'N'))
 
 #### Usa:
@@ -71,6 +73,7 @@ Coluna | Tipo | Expressão
 --------|------|-----------
 idusuario| FK| FOREIGN KEY (idusuario) REFERENCES usuario
 idcomputador| FK| FOREIGN KEY (idcomputador) REFERENCES computador
+idusuario, idcomputador | PK | PRIMARY KEY (idusuario, idcomputador)
 
 #### Computador:
 
@@ -91,7 +94,6 @@ cod_pc| AK | UNIQUE (idcomputador)
 Atributos | Tipo | Nulo | Descrição | Domínio | PRI | EST | CAN
 -----------|------|-------|------------|-----------|-----|-----|------
 idusuario | smallint| sim | codigo usuário | ||X| 
-idfuncionario | smallint| sim | codigo funcionario | ||X| 
 numero | int | sim |numero de telefone| ||| 
 ddd | int | sim |ddd de telefone| ||| 
 
@@ -100,7 +102,7 @@ ddd | int | sim |ddd de telefone| |||
 Coluna | Tipo | Expressão
 --------|------|-----------
 idusuario| FK | FOREIGN KEY (idusuario) REFERENCES usuario
-idfuncionario| FK| FOREIGN KEY (idfuncionario) REFERENCES funcionario
+idusuario| PK| PRIMARY KEY (idusuario)
 
 #### Aluga:
 
@@ -119,6 +121,7 @@ Coluna | Tipo | Expressão
 idusuario| FK | FOREIGN KEY (idusuario) REFERENCES usuario
 idfuncionario| FK| FOREIGN KEY (idfuncionario) REFERENCES funcionario
 iditem| FK| FOREIGN KEY (iditem) REFERENCES item
+idusuario, iditem| PK | PRIMARY KEY (idusuario, iditem)
 
 #### Funcionario:
 
@@ -131,7 +134,8 @@ sexo|varchar(1)|não|sexo do funcionario|F-feminino M-masculino|||
 email|varchar(45)|sim|email do funcionario||||
 rua|varchar(45)|não|rua do funcionario||||
 bairro|varchar(45)|não|bairro do funcionario||||
-cidade|varchar(45)|não|cidade do funcionario||||
+municipio|varchar(45)|não|municipio do funcionario||||
+estado|varchar(45)|não|estado do funcionario||||
 
 #### Constraints Funcionario:
 
@@ -186,6 +190,7 @@ Coluna | Tipo | Expressão
 iditem| FK | FOREIGN KEY (iditem) REFERENCES item
 idacervo| FK| FOREIGN KEY (idacervo) REFERENCES acervo
 idsessao| FK | FOREIGN KEY (idsessao) REFERENCES sessao
+iditem, idsessao, idacervo| PK | PRIMARY KEY(iditem, idsessao, idacervo)
 
 #### Sessão:
 
@@ -232,6 +237,7 @@ autor|varchar(45)|não|autor livro||||
 Coluna | Tipo | Expressão
 --------|------|-----------
 idacervo| FK | FOREIGN KEY (idacervo) REFERENCES acervo
+idacervo| PK | PRIMARY KEY (idacervo)
 
 #### Disco:
 
@@ -246,6 +252,7 @@ estilo|varchar(45)|não|estilo disco||||
 Coluna | Tipo | Expressão
 --------|------|-----------
 idacervo| FK | FOREIGN KEY (idacervo) REFERENCES acervo
+idacervo| PK | PRIMARY KEY (idacervo)
 
 #### Reserva:
 
@@ -261,3 +268,4 @@ Coluna | Tipo | Expressão
 --------|------|-----------
 idacervo| FK | FOREIGN KEY (idacervo) REFERENCES acervo
 idusuario|FK| FOREIGN KEY (idusuario) REFERENCES usuario
+idacervo, idusuario| PK | PRIMARY KEY (idacervo, idusuario)
