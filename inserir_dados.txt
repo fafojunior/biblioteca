@@ -171,34 +171,22 @@ VALUES(5, 4, 5, '06/04/2019', '27/04/2019')
 
 ----------------FONE----------------------
 INSERT INTO fone
-VALUES(1, null, null, null)
+VALUES(1, null, null)
 
 INSERT INTO fone
-VALUES(2, null, 83, 993905347)
+VALUES(2,, 83, 993905347)
 
 INSERT INTO fone
-VALUES(3, null, 83, 960338276)
+VALUES(3, 83, 960338276)
 
 INSERT INTO fone
-VALUES(4, null, 83, 915937094)
+VALUES(4, 83, 915937094)
 
 INSERT INTO fone
-VALUES(5, null, 83, 936653697)
+VALUES(5, 83, 936653697)
 
 INSERT INTO fone
-VALUES(null, 1, null, null)
-
-INSERT INTO fone
-VALUES(null, 2, 83, 914255758)
-
-INSERT INTO fone
-VALUES(null, 3, 83, 968886096)
-
-INSERT INTO fone
-VALUES(null, 4, 83, 937421096)
-
-INSERT INTO fone
-VALUES(null, 5, 83, 956018533)
+VALUES(null, null, null)
 
 
 -------------DEPENDENTE----------------
@@ -232,3 +220,5 @@ VALUES(4, 3, '22/02/2020')
 
 INSERT INTO reserva
 VALUES(3, 5, '05/02/2020')
+
+
