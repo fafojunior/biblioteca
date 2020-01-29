@@ -1,0 +1,450 @@
+Github:  https://github.com/fafojunior/biblioteca
+
+-------------------MINIMUNDO----------------------
+
+Sistema bibliotecário em que o usuário é cadastrado com seus dados pessoais (nome, CPF, sexo, e-mail, telefone, endereço, estado civil) podendo assim ter acesso aos serviços da biblioteca. Na biblioteca há uma sala de estudos com acesso virtual em computadores que são disponibilizados aos usuários cadastrados.
+Também sendo possível alugar itens do acervo da biblioteca por mediação de um dos funcionários.
+Os itens alugados ficam em sessões especificas separadas por nome e numeração, juntamente com o prazo de devolução.
+No acervo há duas opções para se alugar: livros e Discos, cada um com seu título e artista, ambos contendo seus códigos individuais.
+Os funcionários também são cadastrados no sistema, juntamente de seus dependentes para que os familiares do funcionário também possam participar de algum dos planos disponibilizados pela empresa.
+Caso um item do acervo esteja indisponível no estoque, o usuário tem também a opção de fazer a reserva para quando o item retornar ficar separado para o próprio.
+
+
+------- Banco Fisico --------------
+
+create table Usuario(
+idusuario smallint	NOT NULL,
+nome varchar(45) NOT NULL,
+cpf varchar(12) NOT NULL,
+sexo varchar(1) NOT NULL,
+email varchar(45) NULL,
+rua varchar(45) NOT NULL,
+bairro varchar(45) NOT NULL,
+municipio varchar(45) NOT NULL,
+estado varchar(45) NOT NULL,
+idmatrimonio smallint NULL,
+casado varchar(5) NOT NULL,
+nome_matrimonio varchar(45) NULL,
+CONSTRAINT PK_usuario PRIMARY KEY (idusuario),
+CONSTRAINT AK_usuario_nome UNIQUE (nome), 
+CONSTRAINT CK_usuario_sexo CHECK ( sexo IN ('M','F' )), 
+CONSTRAINT AK_usuario_cpf UNIQUE (cpf),
+CONSTRAINT FK_matrimonio FOREIGN KEY (idmatrimonio) REFERENCES Usuario,
+CONSTRAINT AK_matrimonio UNIQUE (idmatrimonio),
+CONSTRAINT CK_usuario_casado CHECK ( casado IN ('S','N'))
+)
+
+create table Computador(
+idcomputador smallint NOT NULL,
+cod_pc int NOT NULL,
+CONSTRAINT PK_computador PRIMARY KEY (idcomputador),
+CONSTRAINT AK_cod_pc UNIQUE(idcomputador)
+)
+
+create table Usa(
+idusuario smallint NOT NULL,
+idcomputador smallint NOT NULL,
+hora_ent time NOT NULL,
+hora_sai time NOT NULL,
+
+CONSTRAINT FK_usa_usuario FOREIGN KEY (idusuario) REFERENCES usuario,
+CONSTRAINT FK_usa_computador FOREIGN KEY (idcomputador) REFERENCES computador,
+CONSTRAINT PK_usa PRIMARY KEY(idusuario, idcomputador)
+)
+
+create table Funcionario(
+idfuncionario smallint	NOT NULL,
+nome varchar(45) NOT NULL,
+cpf varchar(12) NOT NULL,
+sexo varchar(1) NOT NULL,
+email varchar(45) NULL,
+rua varchar(45) NOT NULL,
+bairro varchar(45) NOT NULL,
+municipio varchar(45) NOT NULL,
+estado varchar(45) NOT NULL,                              
+CONSTRAINT PK_funcionario PRIMARY KEY (idfuncionario),
+CONSTRAINT AK_funcionarioo_nome UNIQUE (nome), 
+CONSTRAINT CK_funcionario_sexo CHECK ( sexo IN ('M','F' )) ,
+CONSTRAINT AK_funcionario_cpf UNIQUE (cpf),
+)
+
+create table Item(
+iditem smallint	NOT NULL,
+quantidade int NOT NULL,
+CONSTRAINT PK_Item PRIMARY KEY (iditem)
+)
+
+create table Aluga(
+idusuario smallint	NOT NULL,
+iditem smallint NOT NULL,
+idfuncionario smallint	NOT NULL,
+data_entrega date NOT NULL,
+data_devolucao date NOT NULL,
+CONSTRAINT FK_funcionario FOREIGN KEY (idfuncionario) REFERENCEs funcionario,
+CONSTRAINT FK_Item FOREIGN KEY (iditem) REFERENCES item,
+CONSTRAINT FK_usuario FOREIGN KEY (idusuario) REFERENCES usuario,
+CONSTRAINT PK_aluga PRIMARY KEY(idusuario, iditem)
+)
+
+
+create table Acervo(
+idacervo smallint NOT NULL,
+codigo varchar(20) NOT NULL,
+titulo varchar(45) NOT NULL,
+CONSTRAINT PK_acervo PRIMARY KEY (idacervo),
+CONSTRAINT AK_codigo UNIQUE (codigo)
+)
+
+create table Livro(
+idacervo smallint NOT NULL,
+editora varchar(45) NOT NULL,
+autor varchar(45) NOT NULL,
+CONSTRAINT FK_acervo FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT PK_livro PRIMARY KEY (idacervo)
+)
+
+create table Disco(
+idacervo smallint NOT NULL,
+artista varchar(45) NOT NULL,
+estilo varchar(45) NULL,
+CONSTRAINT FK_acervo_disco FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT PK_disco PRIMARY KEY (idacervo)
+)
+
+create table Reserva(
+idacervo smallint NOT NULL,
+idusuario smallint NOT NULL,
+data_res date NOT NULL,
+CONSTRAINT FK_usuario_reserva FOREIGN KEY (idusuario) REFERENCES usuario,
+CONSTRAINT FK_acervo_reserva FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT PK_reserva PRIMARY KEY(idusuario, idacervo)
+)
+
+create table sessao(
+idsessao smallint NOT NULL,
+nome varchar(45) NOT NULL,
+codigo varchar(45) NOT NULL,
+CONSTRAINT PK_codigo PRIMARY KEY (idsessao),
+CONSTRAINT AK_codigo_Sessao UNIQUE (codigo)
+)
+
+create table contem(
+iditem smallint	NOT NULL,
+idacervo smallint NOT NULL,
+idsessao smallint NOT NULL,
+CONSTRAINT FK_Item_contem FOREIGN KEY (iditem) REFERENCES item,
+CONSTRAINT FK_acervo_contem FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT FK_sessao_contem FOREIGN KEY (idsessao) REFERENCES sessao,
+CONSTRAINT PK_contem PRIMARY KEY(iditem, idacervo, idsessao)
+)
+
+create table Fone(
+idusuario smallint NULL,
+ddd int DEFAULT 83,
+numero int NULL,
+CONSTRAINT FK_usuario_fone FOREIGN KEY(idusuario) REFERENCES usuario,
+CONSTRAINT PK_fone PRIMARY KEY(idusuario)
+)
+
+create table Dependente(
+iddependente smallint NOT NULL,
+grau varchar(45) NOT NULL,
+nome varchar(45) NULL,
+idfuncionario smallint NOT NULL,
+CONSTRAINT PK_dependente PRIMARY KEY (iddependente),
+CONSTRAINT FK_funcionario_dependente FOREIGN KEY (idfuncionario) REFERENCES funcionario
+)
+
+
+
+----------------Povoamento--------------------
+INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, estado, casado)
+VALUES (1, 'Bron Bedingfield', '930169251152', 'M', 'bbedingfield0@hotmail.com', 'Rua Frederico Moura', 'Cidade Nova', 'Franca', 'SP', 'N')
+
+INSERT INTO usuario
+VALUES (2, 'Willdon Fawcitt', '872694318278', 'M', 'wfawcitt2@hotmail.com', 'Avenida Afonso Pena', 'Boa Viagem', 'Belo Horizonte','MG', 1, 'S', 'Maria das Dores')
+
+INSERT INTO usuario
+VALUES (3, 'Kathrine Eustice', '425980983012', 'F', 'keustice9@hotmail.com', 'Rua da Imprensa', 'Monte Castelo', 'Campo Grande', 'MS', 2, 'S', 'Garvy Drinkale')
+
+INSERT INTO usuario(idusuario, nome, cpf, sexo, email, rua, bairro, municipio, estado, casado)
+VALUES (4, 'Josileide dos Campos', '985304423423', 'F', 'joosi1230@hotmail.com', 'Avenida Rio Branco', 'Centro', 'Rio de Janeiro', 'RJ', 'N')
+
+INSERT INTO usuario
+VALUES(5, 'Marcia Windas', '541482238712', 'F', 'mwindas0@hotmail.com', 'Avenida Esbertalina Barbosa Damiani', 'Guriri Norte', 'São Mateus', 'ES', 3, 'S', 'Luiz Antonio')
+
+
+-----------COMPUTADOR------------
+INSERT INTO computador
+VALUES(1, 111)
+
+INSERT INTO computador
+VALUES(2, 112)
+
+INSERT INTO computador
+VALUES(3, 113)
+
+INSERT INTO computador
+VALUES(4, 114)
+
+INSERT INTO computador
+VALUES(5, 115)
+
+
+---------------USA---------------
+INSERT INTO usa
+VALUES(3, 2, '13:50:00', '15:20:00')
+
+INSERT INTO usa
+VALUES(1, 1, '13:20:00', '14:21:00')
+
+INSERT INTO usa
+VALUES(4, 5, '16:10:00', '17:20:00')
+
+INSERT INTO usa
+VALUES(1, 4, '12:40:00', '13:50:00')
+
+INSERT INTO usa
+VALUES(2, 2, '15:20:00', '15:50:00')
+
+
+------------------ACERVO-------------------
+INSERT INTO acervo
+VALUES(1, '221', 'Dom Casmurro')
+
+INSERT INTO acervo
+VALUES(2, '222', 'Damnation')
+
+INSERT INTO acervo
+VALUES(3, '223', 'Titanic')
+
+INSERT INTO acervo
+VALUES(4, '224', 'Coraline')
+
+INSERT INTO acervo
+VALUES(5, '225', 'Viagem ao centro da Terra')
+
+
+INSERT INTO livro
+values(1, 'Garnier', 'Machado de Assis')
+
+INSERT INTO livro
+values(4, 'Bloomsbury', 'Neil Gaiman')
+
+INSERT INTO livro
+values(5, 'Júlio Verne', 'Pierre-Jules Hetzel')
+
+
+
+INSERT INTO disco
+values(2, 'Opeth', 'Metal Progressivo')
+
+INSERT INTO disco
+values(3, 'James Cameron', 'Romance')
+
+
+------------SESSAO--------------
+INSERT INTO Sessao
+values(1, 'Romance', '331')
+
+INSERT INTO Sessao
+values(2, 'Drama', '332')
+
+INSERT INTO Sessao
+values(3, 'Terror', '333')
+
+
+---------ITEM-----------
+INSERT INTO item
+values(1, 1)
+
+INSERT INTO item
+values(2, 4)
+
+INSERT INTO item
+values(3, 2)
+
+INSERT INTO item
+values(4, 2)
+
+INSERT INTO item
+values(5, 1)
+
+--------------CONTEM------------
+INSERT INTO contem
+values(1, 2, 2)
+
+INSERT INTO contem
+values(2, 1, 1)
+
+INSERT INTO contem
+values(2, 2, 2)
+
+INSERT INTO contem
+values(2, 3, 1)
+
+INSERT INTO contem
+values(2, 3, 2)
+
+INSERT INTO contem
+values(3, 2, 1)
+
+INSERT INTO contem
+values(3, 3, 1)
+
+
+-----------------------------------FUNCIONARIO----------------------------------------
+INSERT INTO funcionario
+VALUES(1, '	Adrienne Troake', '757898192712', 'F', 'atroake0@hotmail.com', 'Rua Humberto da Silva Paiva Martins', 'Ernesto Geisel', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(2, 'Georgie Pridmore', '726397890312', 'M', 'gpridmore8@hotmail.com', 'Rua Genival de Oliveira', 'José Américo de Almeida', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(3, '	Madeline Gaven', '897146933112', 'F', 'mgaven6@hotmail.com', 'Rua Manoel Maria de Figueiredo', 'Pedro Gondim', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(4, 'Arthur Giacomucci', '927009262354', 'M', 'agiacomucci0@hotmail.com', 'Rua Paulino Pinto', 'Cabo Branco', 'João Pessoa', 'PB')
+
+INSERT INTO funcionario
+VALUES(5, 'Malia Janson', '422182262754', 'F', 'mjanson9@hotmail.com', 'Rua Flávio de Oliveira Albuquerque', 'Mangabeira', 'João Pessoa', 'PB')
+
+
+
+
+------------------ALUGA--------------------
+INSERT INTO aluga
+VALUES(1, 2, 1, '30/03/2019', '20/04/2019')
+
+INSERT INTO aluga
+VALUES(2, 1, 3, '02/04/2019', '23/04/2019')
+
+INSERT INTO aluga
+VALUES(3, 3, 5, '02/04/2019', '23/04/2019')
+
+INSERT INTO aluga
+VALUES(4, 5, 2, '05/04/2019', '26/04/2019')
+
+INSERT INTO aluga
+VALUES(5, 4, 5, '06/04/2019', '27/04/2019')
+
+
+----------------FONE----------------------
+INSERT INTO fone
+VALUES(1, null, null)
+
+INSERT INTO fone
+VALUES(2,, 83, 993905347)
+
+INSERT INTO fone
+VALUES(3, 83, 960338276)
+
+INSERT INTO fone
+VALUES(4, 83, 915937094)
+
+INSERT INTO fone
+VALUES(5, 83, 936653697)
+
+INSERT INTO fone
+VALUES(null, null, null)
+
+
+-------------DEPENDENTE----------------
+INSERT INTO dependente
+VALUES(1, 'filho', 'Eduardo Lima', 1)
+
+INSERT INTO dependente
+VALUES(2, 'filho', 'José Lima', 1)
+
+INSERT INTO dependente
+VALUES(3, 'filha', 'Maria Lins', 3)
+
+INSERT INTO dependente
+VALUES(4, 'filha', 'Luiza Mel', 2)
+
+INSERT INTO dependente
+VALUES(5, 'filho', 'Arlindo Cruz', 2)
+
+-----------------RESERVA------------------
+INSERT INTO reserva
+VALUES(2, 1, '30/01/2020')
+
+INSERT INTO reserva
+VALUES(1, 1, '30/01/2020')
+
+INSERT INTO reserva
+VALUES(2, 2, '25/03/2020')
+
+INSERT INTO reserva
+VALUES(4, 3, '22/02/2020')
+
+INSERT INTO reserva
+VALUES(3, 5, '05/02/2020')
+
+
+
+
+---------------CONSULTAS---------------
+
+------------UPDATES------------
+UPDATE funcionario
+SET email='adritroak@hotmail.com'
+WHERE idfuncionario = 1
+
+UPDATE reserva
+SET data_res = '29/01/2020'
+WHERE idacervo = 2
+
+------------DELETE--------------
+DELETE FROM reserva
+WHERE idacervo = 3
+
+DELETE FROM dependente
+WHERE idfuncionario = 3
+
+
+-------------Consultas-------------------
+Consultar o nome do usuario, o funcionario que o atendeu, a quantidade de itens que alugou, o nome da sessao e titulo da obra.
+
+SELECT us.nome as [usuario], fu.nome as [funcionario], it.quantidade as [quantidade], se.nome as [sessao], ac.titulo as [obra]
+FROM usuario as [us] JOIN aluga as [al]
+ON us.idusuario = al.idusuario
+JOIN funcionario as [fu]
+ON al.idfuncionario = fu.idfuncionario
+JOIN item as [it]
+ON al.iditem = it.iditem
+JOIN contem as [con]
+ON it.iditem = con.iditem
+JOIN sessao as [se]
+ON se.idsessao = con.idsessao
+JOIN acervo as [ac]
+ON ac.idacervo = con.idacervo
+ORDER BY us.nome
+
+
+
+Quantidade de reservas feitas por usuario.
+
+SELECT us.nome as [usuario], COUNT(ac.titulo) as [quantidade]
+FROM usuario as [us] JOIN reserva as [re]
+ON us.idusuario = re.idusuario
+JOIN Acervo as [ac]
+ON ac.idacervo = re.idacervo
+GROUP BY us.nome
+
+
+
+Exibir os usuarios, os computadores que utilizaram para estudo e o horario em que foram utilizados
+
+SELECT us.nome as [usuario], usa.hora_ent as [entrada], usa.hora_sai as [saida], com.cod_pc as [computador]
+FROM usuario as [us] JOIN usa
+ON us.idusuario = usa.idusuario
+JOIN Computador as [com]
+ON com.idcomputador = usa.idcomputador
+
+
+
+
+
+---------------DICIONARIO----------------
+https://github.com/fafojunior/biblioteca#dicion%C3%A1rio-de-dados
