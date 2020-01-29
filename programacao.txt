@@ -15,7 +15,8 @@ CONSTRAINT PK_usuario PRIMARY KEY (idusuario),
 CONSTRAINT AK_usuario_nome UNIQUE (nome), 
 CONSTRAINT CK_usuario_sexo CHECK ( sexo IN ('M','F' )), 
 CONSTRAINT AK_usuario_cpf UNIQUE (cpf),
-CONSTRAINT FK_matrimonio FOREIGN KEY (idusuario) REFERENCES Usuario,
+CONSTRAINT FK_matrimonio FOREIGN KEY (idmatrimonio) REFERENCES Usuario,
+CONSTRAINT AK_matrimonio UNIQUE (idmatrimonio),
 CONSTRAINT CK_usuario_casado CHECK ( casado IN ('S','N'))
 )
 
@@ -33,7 +34,8 @@ hora_ent time NOT NULL,
 hora_sai time NOT NULL,
 
 CONSTRAINT FK_usa_usuario FOREIGN KEY (idusuario) REFERENCES usuario,
-CONSTRAINT FK_usa_computador FOREIGN KEY (idcomputador) REFERENCES computador
+CONSTRAINT FK_usa_computador FOREIGN KEY (idcomputador) REFERENCES computador,
+CONSTRAINT PK_usa PRIMARY KEY(idusuario, idcomputador)
 )
 
 create table Funcionario(
@@ -66,7 +68,9 @@ data_entrega date NOT NULL,
 data_devolucao date NOT NULL,
 CONSTRAINT FK_funcionario FOREIGN KEY (idfuncionario) REFERENCEs funcionario,
 CONSTRAINT PK_FK_Item FOREIGN KEY (iditem) REFERENCES item,
-CONSTRAINT FK_usuario FOREIGN KEY (idusuario) REFERENCES usuario)
+CONSTRAINT FK_usuario FOREIGN KEY (idusuario) REFERENCES usuario,
+CONSTRAINT PK_aluga PRIMARY KEY(idusuario, iditem)
+)
 
 
 create table Acervo(
@@ -81,20 +85,25 @@ create table Livro(
 idacervo smallint NOT NULL,
 editora varchar(45) NOT NULL,
 autor varchar(45) NOT NULL,
-CONSTRAINT FK_acervo FOREIGN KEY (idacervo) REFERENCES acervo)
+CONSTRAINT FK_acervo FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT PK_livro PRIMARY KEY (idacervo)
+)
 
 create table Disco(
 idacervo smallint NOT NULL,
 artista varchar(45) NOT NULL,
 estilo varchar(45) NULL,
-CONSTRAINT FK_acervo_disco FOREIGN KEY (idacervo) REFERENCES acervo)
+CONSTRAINT FK_acervo_disco FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT PK_disco PRIMARY KEY (idacervo)
+)
 
 create table Reserva(
 idacervo smallint NOT NULL,
 idusuario smallint NOT NULL,
 data_res date NOT NULL,
 CONSTRAINT FK_usuario_reserva FOREIGN KEY (idusuario) REFERENCES usuario,
-CONSTRAINT FK_acervo_reserva FOREIGN KEY (idacervo) REFERENCES acervo
+CONSTRAINT FK_acervo_reserva FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT PK_reserva PRIMARY KEY(idusuario, idacervo)
 )
 
 create table sessao(
@@ -105,16 +114,15 @@ CONSTRAINT PK_codigo PRIMARY KEY (idsessao),
 CONSTRAINT AK_codigo_Sessao UNIQUE (codigo)
 )
 
-
- create table contem(
- iditem smallint	NOT NULL,
- idacervo smallint NOT NULL,
- idsessao smallint NOT NULL,
- CONSTRAINT FK_Item_contem FOREIGN KEY (iditem) REFERENCES item,
- CONSTRAINT FK_acervo_contem FOREIGN KEY (idacervo) REFERENCES acervo,
- CONSTRAINT FK_sessao_contem FOREIGN KEY (idsessao) REFERENCES sessao
- )
-
+create table contem(
+iditem smallint	NOT NULL,
+idacervo smallint NOT NULL,
+idsessao smallint NOT NULL,
+CONSTRAINT FK_Item_contem FOREIGN KEY (iditem) REFERENCES item,
+CONSTRAINT FK_acervo_contem FOREIGN KEY (idacervo) REFERENCES acervo,
+CONSTRAINT FK_sessao_contem FOREIGN KEY (idsessao) REFERENCES sessao,
+CONSTRAINT PK_contem PRIMARY KEY(iditem, idacervo, idsessao)
+)
 
 create table Fone(
 idusuario smallint NULL,
@@ -122,7 +130,7 @@ idfuncionario smallint NULL,
 ddd int DEFAULT 83,
 numero int NULL,
 CONSTRAINT FK_usuario_fone FOREIGN KEY(idusuario) REFERENCES usuario,
-CONSTRAINT FK_funcionario_fone FOREIGN KEY(idfuncionario) REFERENCES funcionario
+CONSTRAINT PK_fone PRIMARY KEY(idusuario)
 )
 
 create table Dependente(
